@@ -10,13 +10,20 @@ public class JogoDaForca {
 	
 	public static void inicio(){
 		traco(palavraOculta());
-		String letra = retornaLetra();
 		int pos = 0;
+		int tentativas = 0;
 		
 		do {
-			pos = checaLetra(pos, letra, palavraOculta());
-			System.out.println(pos);
-		} while (pos != 0);
+		String letra = retornaLetra();
+			
+			do {
+				pos = checaLetra(pos, letra, palavraOculta());
+				
+			}while (pos != 0);
+			
+			System.out.println("\n");
+			tentativas++;
+		} while (tentativas < 6);
 
 		
 	}
@@ -45,10 +52,15 @@ public class JogoDaForca {
 		for (int i = pos; i < palavra.length(); i++) {
 			if (palavra.substring(i, i+1).equals(letra)) {
 				pos = i + 1;
-				
+				System.out.print(letra);
 				return pos;
 			}
+			else {
+				System.out.print("_ ");
+			}
+			
 		}
+		
 		return 0;
 	}
 }
