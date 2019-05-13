@@ -10,10 +10,15 @@ public class JogoDaForca {
 	
 	public static void inicio(){
 		traco(palavraOculta());
-		//System.out.println(retornaLetra());
+		String letra = retornaLetra();
 		int pos = 0;
 		
-		System.out.println(checaLetra(pos, retornaLetra(), palavraOculta()));
+		do {
+			pos = checaLetra(pos, letra, palavraOculta());
+			System.out.println(pos);
+		} while (pos != 0);
+
+		
 	}
 	
 	public static String retornaLetra(){
@@ -24,7 +29,7 @@ public class JogoDaForca {
 	}
 	
 	public static String palavraOculta(){
-		return "Democracia";
+		return "democracia";
 	}
 	
 	public static void traco (String palavra){
@@ -36,12 +41,11 @@ public class JogoDaForca {
 	}
 	
 	public static int checaLetra (int pos, String letra, String palavra) {
-		int let = letra.indexOf(letra);
-		
 		
 		for (int i = pos; i < palavra.length(); i++) {
-			if (let == palavra.indexOf(let)) {
-				pos = i;
+			if (palavra.substring(i, i+1).equals(letra)) {
+				pos = i + 1;
+				
 				return pos;
 			}
 		}
