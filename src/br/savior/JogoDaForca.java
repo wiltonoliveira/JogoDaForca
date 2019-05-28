@@ -10,96 +10,87 @@ public class JogoDaForca {
 	
 	public static void inicio(){
 		traco(palavraOculta());
-		int pos = 0;
+		
 		int erros = 0;
-		String[] status = new String [10];
+		char[] status = new char [10];
 		status = iniciaTela();
 		
+		
+		
 		do {
-		String letra = retornaLetra();
+			char letra = retornaLetra();
+			status = checaLetra (letra, status, palavraOculta());
+			imprimeStatus (status);
 			
-			do {
-				pos = checaLetra(pos, letra, palavraOculta());
-				status = atualizaTela (status, pos, letra);
-				imprimeTela (status);
-				
-			}while (pos != 0);
-			
-			
-			System.out.println("\n");
 			erros++;
-			
-		} while (erros < 6);
+		} while (erros <= 6);
 	
 		
 	}
 	
 	
-	public static String retornaLetra(){
+	public static char retornaLetra(){
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Informe uma letra qualquer: ");
-		String letra = scan.next();
+		char letra = scan.next().charAt(0);
+		
 		return letra;
 	}
 	
-	public static String[] iniciaTela () {
-		String[] x = new String [10];
+	public static char[] iniciaTela () {
+		char[] x = new char [10];
 		
 		for (int i = 0; i < 10; i++) {
-			x [i] = "_";
+			x [i] = '_';
 		}
 		
 		return x;
 	}
 	
-	public static String palavraOculta(){
-		return "democracia";
+	public static char[] palavraOculta(){
+		char[] palavra = new char [10];
+		
+		palavra[0] = 'd';
+		palavra[1] = 'e';
+		palavra[2] = 'm';
+		palavra[3] = 'o';
+		palavra[4] = 'c';
+		palavra[5] = 'r';
+		palavra[6] = 'a';
+		palavra[7] = 'c';
+		palavra[8] = 'i';
+		palavra[9] = 'a';
+		
+		return palavra;
 	}
 	
-	public static void traco (String palavra){
-		for (int i = 0; i < palavra.length(); i++) {
+	public static void traco (char[] palavra){
+		for (int i = 0; i < palavra.length; i++) {
 			System.out.print("_ " + "");
 			
 		}
 		System.out.println("\n");
 	}
 	
-	public static String[] tela (int pos, String[] original, String letra, String palavra) {
+	public static char[] checaLetra (char letra, char[]tela, char[] palavra) {
 		
-		
-		return original;
-	}
-	
-	public static int checaLetra (int pos, String letra, String palavra) {
-		
-		for (int i = pos; i < palavra.length(); i++) {
-			if (palavra.substring(i, i+1).equals(letra)) {
-				pos = i + 1;
-				//System.out.print(letra);
-				return pos;
+		for (int i = 0; i < tela.length; i++) {
+			if (palavra[i] == letra) {
+				tela[i] = letra;
 			}
-			/*
-			else {
-				System.out.print("_ ");
-			}
-			*/
 		}
 		
-		return 0;
-	}
-	
-	public static String[] atualizaTela (String[] original, int pos, String letra) {
-		original[pos - 1] = letra;
 		
-		return original;
+		return tela;
 	}
 	
-	public static void imprimeTela (String[] status) {
+	
+	public static void imprimeStatus (char[] status) {
 		for (int i = 0; i < status.length; i++) {
 			System.out.print(status[i] + " ");
 		}
-		System.out.println("\n");
 	}
+	
 	
 }
 
