@@ -21,9 +21,10 @@ public class JogoDaForca {
 			char letra = retornaLetra();
 			status = checaLetra (letra, status, palavraOculta());
 			imprimeStatus (status);
+			erros += checaErro (palavraOculta(), letra);
 			imprimeBoneco (erros);
-			erros++;
-		} while (erros <= 6);
+			
+		} while (erros < 6);
 	
 		
 	}
@@ -84,6 +85,17 @@ public class JogoDaForca {
 		return tela;
 	}
 	
+	public static int checaErro (char[] palavra, char letra) {
+		int erro = 1;
+		
+		for (int i = 0; i < palavra.length; i++) {
+			if (palavra[i] == letra) {
+				erro = 0;
+			}
+		}
+		
+		return erro;
+	}
 	
 	public static void imprimeStatus (char[] status) {
 		for (int i = 0; i < status.length; i++) {
@@ -96,7 +108,7 @@ public class JogoDaForca {
 		
 		switch (erros) {
 		case 0: {
-			System.out.println("  _ _");
+			System.out.println("");
 			System.out.println(" | |");
 			System.out.println(" |");
 			System.out.println(" |");
