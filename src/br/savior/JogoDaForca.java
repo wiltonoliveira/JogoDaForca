@@ -8,9 +8,9 @@ public class JogoDaForca {
 		inicio();
 	}
 	
-	public static void inicio(){
+	public static int inicio(){
 		traco(palavraOculta());
-		
+		int vitoria = 0;
 		int erros = 0;
 		char[] status = new char [10];
 		status = iniciaTela();
@@ -23,10 +23,17 @@ public class JogoDaForca {
 			imprimeStatus (status);
 			erros += checaErro (palavraOculta(), letra);
 			imprimeBoneco (erros);
+			vitoria = checaVitoria (status);
 			
+			if (vitoria == 0) {
+				System.out.println("******* VOCÊ GANHOU *******");
+				return 0;
+			}
 		} while (erros < 6);
-	
 		
+		System.out.println("******* VOCÊ PERDEU *******");
+		System.out.print("Palavra Oculta: "); imprimeStatus(palavraOculta());
+		return 0;
 	}
 	
 	
@@ -96,6 +103,20 @@ public class JogoDaForca {
 		
 		return erro;
 	}
+	
+	public static int checaVitoria (char[] status) {
+		int vit = 0;
+		
+		for (int i = 0; i < status.length; i++) {
+			if (status[i] == '_') {
+				vit = 1;
+				return vit;
+			}
+		}
+		
+		return vit;
+	}
+	
 	
 	public static void imprimeStatus (char[] status) {
 		for (int i = 0; i < status.length; i++) {
