@@ -21,7 +21,7 @@ public class JogoDaForca {
 			char letra = retornaLetra();
 			status = checaLetra (letra, status, palavraOculta());
 			imprimeStatus (status);
-			
+			imprimeBoneco (erros);
 			erros++;
 		} while (erros <= 6);
 	
@@ -91,6 +91,60 @@ public class JogoDaForca {
 		}
 	}
 	
+	public static void imprimeBoneco (int erros) {
+		System.out.println("\n");
+		
+		switch (erros) {
+		case 0: {
+			System.out.println("  _ _");
+			System.out.println(" | |");
+			System.out.println(" |");
+			System.out.println(" |");
+			System.out.println("---");
+			break;
+		}
+		case 1: {
+			System.out.println("  _ _");
+			System.out.println(" | |");
+			System.out.println(" | O");
+			System.out.println(" |");
+			System.out.println("---");
+			break;
+		}
+		case 2: {
+			System.out.println("  _ _ _");
+			System.out.println(" |  |");
+			System.out.println(" |  O");
+			System.out.println(" |  |");
+			System.out.println("---");
+			break;
+		}
+		case 3: {
+			System.out.println("  _ _ _");
+			System.out.println(" |  |");
+			System.out.println(" |  O");
+			System.out.println(" |  |");
+			System.out.println("---/");
+			break;
+		}
+		case 4: {
+			System.out.println("  _ _ _");
+			System.out.println(" |  |");
+			System.out.println(" |  O");
+			System.out.println(" |  |");
+			System.out.println("---/  |");
+			break;
+		}
+		case 5:{
+			System.out.println("  _ _ _");
+			System.out.println(" |  |");
+			System.out.println(" |  O");
+			System.out.println(" | /|-");
+			System.out.println("---/ |");
+			break;
+		}
+		}
+	}
 	
 }
 
